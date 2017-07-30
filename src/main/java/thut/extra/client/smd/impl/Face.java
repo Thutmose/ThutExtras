@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.util.math.Vec3d;
 import thut.core.client.render.model.TextureCoordinate;
 import thut.core.client.render.model.Vertex;
 
@@ -50,9 +49,7 @@ public class Face
             }
             else
             {
-                Vec3d normalNormal = new Vec3d(this.vertices[i].xn, this.vertices[i].yn, this.vertices[i].zn)
-                        .normalize();
-                GL11.glNormal3f((float) normalNormal.xCoord, (float) normalNormal.yCoord, (float) normalNormal.zCoord);
+                GL11.glNormal3f(this.vertices[i].xn, this.vertices[i].yn, this.vertices[i].zn);
             }
             GL11.glVertex3d(this.vertices[i].x, this.vertices[i].y, this.vertices[i].z);
         }
