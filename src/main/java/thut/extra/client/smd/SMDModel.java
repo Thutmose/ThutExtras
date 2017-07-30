@@ -27,6 +27,7 @@ public class SMDModel implements IModelCustom, IModel, IRetexturableModel, IFake
     private final HashMap<String, IExtendedModelPart> nullPartsMap = Maps.newHashMap();
     private final HashMap<String, IExtendedModelPart> subPartsMap  = Maps.newHashMap();
     private final Set<String>                         nullHeadSet  = Sets.newHashSet();
+    private final Set<String>                         animations   = Sets.newHashSet();
     private final HeadInfo                            info         = new HeadInfo();
     SmdModelLoader                                    wrapped;
     IPartTexturer                                     texturer;
@@ -45,6 +46,7 @@ public class SMDModel implements IModelCustom, IModel, IRetexturableModel, IFake
         {
             wrapped = new SmdModelLoader(model);
             wrapped.usesMaterials = true;
+            animations.addAll(wrapped.anims.keySet());
         }
         catch (Exception e)
         {
@@ -237,6 +239,12 @@ public class SMDModel implements IModelCustom, IModel, IRetexturableModel, IFake
     public String getType()
     {
         return "smd";
+    }
+
+    @Override
+    public Set<String> getBuiltInAnimations()
+    {
+        return animations;
     }
 
 }
