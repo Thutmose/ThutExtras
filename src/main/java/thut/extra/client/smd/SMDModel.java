@@ -64,7 +64,9 @@ public class SMDModel implements IModelCustom, IModel, IRetexturableModel, IFake
             }
             wrapped.body.setTexturer(texturer);
             wrapped.body.setAnimationChanger(changer);
+            // Scaling factor for model.
             GL11.glScaled(0.165, 0.165, 0.165);
+            // Makes model face correct way.
             GL11.glRotated(180, 0, 1, 0);
 
             // only increment frame if a tick has passed.
@@ -78,11 +80,14 @@ public class SMDModel implements IModelCustom, IModel, IRetexturableModel, IFake
                 Bone bone = wrapped.body.getBoneByName(s);
                 if (bone != null)
                 {
+                    // Set backup matricies
                     if (bone.custom == null)
                     {
                         bone.custom = new Matrix4f(bone.rest);
                         bone.customInverted = new Matrix4f(bone.restInverted);
                     }
+
+                    // Cap and convert pitch and yaw to radians.
                     float yaw = Math.max(Math.min(info.headYaw, info.yawCapMax), info.yawCapMin);
                     yaw = (float) Math.toRadians(yaw) * info.yawDirection;
                     float pitch = Math.max(Math.min(info.headPitch, info.pitchCapMax), info.pitchCapMin);
@@ -96,9 +101,12 @@ public class SMDModel implements IModelCustom, IModel, IRetexturableModel, IFake
                     float cosA = (float) Math.cos(yaw);
                     float sinA = (float) Math.sin(yaw);
 
+                    // This matrix is for pitch.
                     Matrix4f rotT = new Matrix4f();
+                    // This matrix is for yaw.
                     Matrix4f rotA = new Matrix4f();
 
+                    // Set yaw matrix based on headInfo
                     switch (info.yawAxis)
                     {
                     case 0:
@@ -120,6 +128,7 @@ public class SMDModel implements IModelCustom, IModel, IRetexturableModel, IFake
                         rotA.m22 = cosA;
                     }
 
+                    // Set pitch matrix based on headInfo
                     switch (info.pitchAxis)
                     {
                     case 2:
@@ -140,10 +149,11 @@ public class SMDModel implements IModelCustom, IModel, IRetexturableModel, IFake
                         rotT.m20 = -sinT;
                         rotT.m22 = cosT;
                     }
+                    // Multiply the two to get total rotation matrix
                     headRot = Matrix4f.mul(rotT, rotA, headRot);
                     // Apply the rotation matricies.
                     bone.rest = Matrix4f.mul(bone.custom, headRot, bone.rest);
-                    // Apply inversion.
+                    // Apply inversion and reform
                     bone.restInverted = Matrix4f.invert(bone.rest, bone.restInverted);
                     bone.reformChildren();
                 }
