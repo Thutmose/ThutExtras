@@ -71,7 +71,6 @@ public class SMDModel implements IModelCustom, IModel, IRetexturableModel, IFake
             if (wrapped.body.currentAnim != null && info.currentTick != info.lastTick)
             {
                 wrapped.body.currentAnim.nextFrame();
-                wrapped.animate();
             }
             // Check head parts for rendering rotations of them.
             for (String s : getHeadParts())
@@ -149,6 +148,7 @@ public class SMDModel implements IModelCustom, IModel, IRetexturableModel, IFake
                     bone.reformChildren();
                 }
             }
+            wrapped.animate();
             wrapped.renderAll();
         }
     }
