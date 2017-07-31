@@ -70,9 +70,9 @@ public class SMDModel implements IModelCustom, IModel, IRetexturableModel, IFake
             GL11.glRotated(180, 0, 1, 0);
 
             // only increment frame if a tick has passed.
-            if (wrapped.body.currentAnim != null && info.currentTick != info.lastTick)
+            if (wrapped.body.currentAnim != null && wrapped.body.currentAnim.getNumFrames() > 0)
             {
-                wrapped.body.currentAnim.nextFrame();
+                wrapped.body.currentAnim.setCurrentFrame(info.currentTick % wrapped.body.currentAnim.getNumFrames());
             }
             // Check head parts for rendering rotations of them.
             for (String s : getHeadParts())
