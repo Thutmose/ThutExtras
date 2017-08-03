@@ -354,9 +354,9 @@ public class Model implements IRetexturableModel
 
     public Frame currentFrame()
     {
-        return this.currentAnim.frames.isEmpty() ? null
+        return this.currentAnim == null ? null
                 : this.currentAnim.frames == null ? null
-                        : this.currentAnim == null ? null
+                        : this.currentAnim.frames.isEmpty() ? null
                                 : (Frame) this.currentAnim.frames.get(this.currentAnim.currentFrameIndex);
     }
 
