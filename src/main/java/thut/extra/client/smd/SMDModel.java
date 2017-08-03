@@ -158,7 +158,7 @@ public class SMDModel implements IModelCustom, IModel, IRetexturableModel, IFake
                     bone.reformChildren();
                 }
             }
-            wrapped.animate();
+            if (wrapped.body.currentAnim != null) wrapped.animate();
             wrapped.renderAll();
         }
     }

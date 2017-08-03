@@ -111,7 +111,7 @@ public class Model implements IRetexturableModel
                         while (!(currentLine = reader.readLine()).startsWith("end"))
                         {
                             this.lineCount += 1;
-                            parseBone(currentLine, this.lineCount, body);
+                            parseBone(currentLine.trim(), this.lineCount, body);
                         }
                     }
                     else if (currentLine.startsWith("skeleton"))
@@ -124,7 +124,7 @@ public class Model implements IRetexturableModel
                             this.lineCount += 1;
                             if (!this.isBodyGroupPart)
                             {
-                                parseBoneValues(currentLine, this.lineCount);
+                                parseBoneValues(currentLine.trim(), this.lineCount);
                             }
                         }
                     }
@@ -138,7 +138,7 @@ public class Model implements IRetexturableModel
                             for (int i = 0; i < 3; i++)
                             {
                                 this.lineCount += 1;
-                                params[i] = reader.readLine();
+                                params[i] = reader.readLine().trim();
                             }
                             parseFace(params, this.lineCount, mat);
                         }
