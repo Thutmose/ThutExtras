@@ -55,9 +55,11 @@ public class SmdModelLoader
             this.body = new Model(this, modelPath);
 
             List<String> anims = Lists.newArrayList("idle", "walking", "flying", "sleeping", "swimming");
+            String resLoc = resloc.toString();
             for (String s : anims)
             {
-                String anim = resloc.toString().replace(".smd", "/" + s + ".smd");
+                String anim = resLoc.endsWith("smd") ? resLoc.replace(".smd", "/" + s + ".smd")
+                        : resLoc.replace(".SMD", "/" + s + ".smd");
                 ResourceLocation animation = new ResourceLocation(anim);
                 try
                 {
@@ -69,7 +71,7 @@ public class SmdModelLoader
                 }
                 catch (Exception e)
                 {
-//                    e.printStackTrace();
+                    // e.printStackTrace();
                 }
             }
         }
