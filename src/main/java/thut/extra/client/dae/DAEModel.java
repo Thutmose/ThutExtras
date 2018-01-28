@@ -2,6 +2,7 @@ package thut.extra.client.dae;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.util.ResourceLocation;
@@ -25,13 +26,6 @@ public class DAEModel implements IModel
     }
 
     @Override
-    public void preProcessAnimations(Collection<Animation> animations)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public Set<String> getHeadParts()
     {
         // TODO Auto-generated method stub
@@ -43,6 +37,13 @@ public class DAEModel implements IModel
     {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public void preProcessAnimations(Collection<List<Animation>> collection)
+    {
+        // TODO Auto-generated method stub
+        
     }
 
 }
