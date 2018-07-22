@@ -7,7 +7,5 @@ public class ThutExtras
 {
     public ThutExtras()
     {
-//        ModelFactory.registerIModel("smd", SMDModel.class);
-//        ModelFactory.registerIModel("SMD", SMDModel.class);
     }
 }

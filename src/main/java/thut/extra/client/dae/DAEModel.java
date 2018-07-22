@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import thut.core.client.render.animation.CapabilityAnimation.IAnimationHolder;
 import thut.core.client.render.model.IExtendedModelPart;
 import thut.core.client.render.model.IModel;
+import thut.core.client.render.model.IModelRenderer;
 import thut.core.client.render.tabula.components.Animation;
 
 public class DAEModel implements IModel
@@ -41,6 +44,14 @@ public class DAEModel implements IModel
 
     @Override
     public void preProcessAnimations(Collection<List<Animation>> collection)
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void applyAnimation(Entity entity, IAnimationHolder animate, IModelRenderer<?> renderer, float partialTicks,
+            float limbSwing)
     {
         // TODO Auto-generated method stub
         
